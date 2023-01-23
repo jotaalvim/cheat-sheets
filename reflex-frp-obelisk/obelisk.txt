@@ -1,6 +1,29 @@
-data Dynamic t :: * -> *
-    A container for a value that can change over time and allows notifications on changes. Basically a combination of a Behavior and an Event, with a rule that the Behavior will change if and only if the Event fires.
+================================= Obelisk =====================================
+ob init
+ob run 
+ob hoogle 
+    Run a hoogle server locally for your project's dependency tree
 
+
+data Dynamic t :: * -> *
+    A container for a value that can change over time and allows
+    notifications on changes. Basically a combination of a Behavior and
+    an Event, with a rule that the Behavior will change if and only if
+    the Event fires.
 
 data Event t :: * -> *
-    A stream of occurrences. During any given frame, an Event is either occurring or not occurring; if it is occurring, it will contain a value of the given type (its "occurrence type")
+    A stream of occurrences. During any given frame, an Event is either
+    occurring or not occurring; if it is occurring, it will contain a
+    value of the given type (its "occurrence type")
+
+data Behavior t :: * -> *Source#
+    A container for a value that can change over time. Behaviors can
+    be sampled at will, but it is not possible to be notified when
+    they change
+
+holdDyn :: a -> Event t a -> m (Dynamic t a)
+    Create a Dynamic value using the given initial value that changes
+    every time the Event occurs.
+
+updated :: Dynamic t a -> Event t a
+    Extract the Event of the Dynamic.
