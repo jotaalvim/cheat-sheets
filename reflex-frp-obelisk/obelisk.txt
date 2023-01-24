@@ -16,7 +16,7 @@ data Event t :: * -> *
     occurring or not occurring; if it is occurring, it will contain a
     value of the given type (its "occurrence type")
 
-data Behavior t :: * -> *Source#
+data Behavior t :: * -> *
     A container for a value that can change over time. Behaviors can
     be sampled at will, but it is not possible to be notified when
     they change
@@ -27,3 +27,13 @@ holdDyn :: a -> Event t a -> m (Dynamic t a)
 
 updated :: Dynamic t a -> Event t a
     Extract the Event of the Dynamic.
+
+elDynAttr :: Text -> Dynamic t (Map Text Text) -> m a -> m a
+    Create a DOM element with Dynamic Attributes
+
+
+mergeWith :: (a -> a -> a) -> [Event t a] -> Event t a
+    Create a new Event that occurs if at least one of the Events in the list occurs. If multiple occur at the same time they are folded from the left with the given function.
+
+accumDyn ::  (a -> b -> a) -> a -> Event t b -> m (Dynamic t a) 
+    Accumulate a Dynamic by folding occurrences of an Event with the provided function. See foldDyn.
