@@ -5,6 +5,10 @@ ob hoogle
     Run a hoogle server locally for your project's dependency tree
 
 
+Dynamic - função que muda um Behaviour quando ocorre um Event
+Behavior - guarda um valor a devolver quando ha o evento
+Event   - ou acontece ou não, Click, Input...
+
 data Dynamic t :: * -> *
     A container for a value that can change over time and allows
     notifications on changes. Basically a combination of a Behavior and
@@ -20,6 +24,7 @@ data Behavior t :: * -> *
     A container for a value that can change over time. Behaviors can
     be sampled at will, but it is not possible to be notified when
     they change
+
 
 holdDyn :: a -> Event t a -> m (Dynamic t a)
     Create a Dynamic value using the given initial value that changes
@@ -37,3 +42,20 @@ mergeWith :: (a -> a -> a) -> [Event t a] -> Event t a
 
 accumDyn ::  (a -> b -> a) -> a -> Event t b -> m (Dynamic t a) 
     Accumulate a Dynamic by folding occurrences of an Event with the provided function. See foldDyn.
+
+count :: Event t a -> m (Dynamic t b)
+    Create a new Dynamic that counts the occurrences of the Event.
+
+
+
+headE :: Event t a -> m (Event t a)
+    Create a new Event that only occurs only once, on the first occurrence of the supplied Event.
+
+tailE :: Event t a -> m (Event t a)
+    Create a new Event that occurs on all but the first occurrence of the supplied Event.
+
+constant :: a -> Behavior t a
+    Create a Behavior that always has the given value
+
+gate :: Behavior t Bool -> Event t a -> Event t a
+    Create a new Event that only occurs if the supplied Event occurs and the Behavior is true at the time of occurrence.
