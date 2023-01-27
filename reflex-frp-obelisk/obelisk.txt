@@ -5,9 +5,9 @@ ob hoogle
     Run a hoogle server locally for your project's dependency tree
 
 
-Dynamic - função que muda um Behaviour quando ocorre um Event
 Behavior - guarda um valor a devolver quando ha o evento
-Event   - ou acontece ou não, Click, Input...
+Dynamic - função que muda um Behaviour quando ocorre um Event
+Event   - dispara quando ha uma cação, Click, Input...
 
 data Dynamic t :: * -> *
     A container for a value that can change over time and allows
@@ -57,5 +57,16 @@ tailE :: Event t a -> m (Event t a)
 constant :: a -> Behavior t a
     Create a Behavior that always has the given value
 
+never :: Event t a
+    An Event with no occurrences
+
 gate :: Behavior t Bool -> Event t a -> Event t a
     Create a new Event that only occurs if the supplied Event occurs and the Behavior is true at the time of occurrence.
+
+toggle ::  Bool -> Event t a -> m (Dynamic t Bool)
+    Create a new Dynamic using the initial value that flips its value every time the Event occurs.
+
+
+
+switchHold :: Event t a -> Event t (Event t a) -> m (Event t a)
+    Switches to the new event whenever it receives one. Only the old event is considered the moment a new one is switched in; the output event will fire at that moment only if the old event does.
