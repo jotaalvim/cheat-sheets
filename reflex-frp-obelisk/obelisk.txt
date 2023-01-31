@@ -70,3 +70,6 @@ toggle ::  Bool -> Event t a -> m (Dynamic t Bool)
 
 switchHold :: Event t a -> Event t (Event t a) -> m (Event t a)
     Switches to the new event whenever it receives one. Only the old event is considered the moment a new one is switched in; the output event will fire at that moment only if the old event does.
+
+current :: Dynamic t a -> Behavior t a
+    Extract the Behavior of a Dynamic.
