@@ -1,36 +1,44 @@
-### uniq 
+# uniq 
 	report or omit repeated lines
     -c  conta linhas adjacentes iguais
     podes dar jeito usar com o sort
 
-### grep
-    -r → recursivo
-    -w palavras inteiras
-    -i → ignore case, maiúsculas e minúsculas
-	-c conta numero de ocorrencias
+# grep
+    -r - recursivo
+    -w - palavras inteiras
+    -i - ignore case, maiúsculas e minúsculas
+	-o - devolve só o que foi match
+	-P - perl notation
+	-c - conta numero de ocorrencias
+    grep M myheart.csv | grep -P -c '1\s*$'
+	
 
-### pandoc
+# awk
+	awk -F, '$2 == "M" {a++} END {print a}' myheart.csv
+	awk -F, '$2 == "M" {a+=$6} END {print a}' myheart.csv
+
+# pandoc
     conversor entre formatos
     pandoc input.abc -t beamer -o output.pdf
 
-### links simbolicos
+# links simbolicos
 	ln -s /home/jotaalvim/Documents/projetos/jotaalvim-tools/ddl ~/.local/bin/ddl
  
-### pushd
+# pushd
 	garda uma dir
 
-### popd
+# popd
 	volta a dir
 
-### sort
+# sort
     ordena
     -n → ordena numéricamente
 
-### locate
+# locate
     procura um ficheiro
     atualiza diariamente
 
-### find
+# find
     dá todos os ficheiros de uma dir recursivamente
 
 
@@ -38,21 +46,21 @@
 
 
 # todo 
-### feh  
+# feh  
 	da para ver diretoria ,imagens
 
-### pdftotext
+# pdftotext
     -layout
 
-### pdfimages -png
+# pdfimages -png
 
-### pdftohtml
+# pdftohtml
 
-### pv
+# pv
     mostra as coisas como se estivesse a escrever em tempo real
     pv -qL 10
 
 ---
-### Status:
+# Status:
 #cheat-sheets
-### Tags: [[Programming]]
+# Tags: [[Programming]]

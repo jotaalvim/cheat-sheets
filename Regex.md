@@ -16,11 +16,19 @@
     \s → whitespace
     \S → NAO whitespace
 
+	\b → dá match com uma string de comprimento 0 wordboundary 
+
 ### TODO 
 * negative/positive look ahead 
 
 
+### Exercício
+String binária que contém pelo menos tres 1
+```
+(0|1)*1(0|1)*1(0|1)*1(0|1)*
+```
+### Não contem a substring 110
 ---
 Status:
 #cheat-sheets
-Tags: [[Programming]]
+Tags: [[Programming]] - [[Processamento-Linguagens]]
